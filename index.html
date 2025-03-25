@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: white;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+        .phones img {
+            width: 400px;
+            border-radius: 10px;
+        }
+        .login-box {
+            background: #000;
+            padding: 40px;
+            border: 1px solid #262626;
+            text-align: center;
+            width: 350px;
+            border-radius: 10px;
+        }
+        .login-box h1 {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #262626;
+            border-radius: 5px;
+            background: #121212;
+            color: white;
+        }
+        .login-box input:focus {
+            outline: none;
+            border-color: #0095f6;
+        }
+        .login-box button {
+            width: 100%;
+            padding: 10px;
+            background: #0095f6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .login-box button:hover {
+            background: #0077cc;
+        }
+        .extra {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .extra a {
+            color: #0095f6;
+            text-decoration: none;
+        }
+        .extra a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="phones">
+            <img src="https://i.imgur.com/Tu8LG6O.png" alt="Instagram Mobile">
+        </div>
+        <div class="login-box">
+            <h1>Instagram</h1>
+            <input type="text" id="username" placeholder="Telefon numarası, kullanıcı adı veya e-posta" required>
+            <input type="password" id="password" placeholder="Şifre" required>
+            <button onclick="login()">Giriş Yap</button>
+            <p class="extra">YA DA</p>
+            <p class="extra"><a href="#">Facebook ile Giriş Yap</a></p>
+            <p class="extra"><a href="#">Şifreni mi unuttun?</a></p>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Kullanıcı adı ve şifreyi kontrol et (basit bir doğrulama örneği)
+            if (username === "" || password === "") {
+                alert("Lütfen tüm alanları doldurun!");
+                return;
+            }
+
+            // Bu kısmı gerçek bir backend sistemi ile entegre etmeniz gerekecek
+            console.log("Kullanıcı Adı:", username);
+            console.log("Şifre:", password);
+            alert("Giriş başarılı!");
+            // Kullanıcıyı başka bir sayfaya yönlendirebilirsiniz (örneğin: dashboard.html)
+        }
+    </script>
+</body>
+</html>
