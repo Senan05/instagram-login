@@ -16,16 +16,17 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: black;
+            background-color: white;
         }
         .login-container {
-            background: #121212;
+            background: #f0f0f0;
             padding: 30px;
             border-radius: 10px;
             text-align: center;
             width: 350px;
-            color: white;
+            color: black;
             position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         .close-btn {
             position: absolute;
@@ -43,10 +44,10 @@
             width: 100%;
             padding: 10px;
             margin: 5px 0;
-            border: 1px solid #333;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            background: #1a1a1a;
-            color: white;
+            background: #fff;
+            color: black;
         }
         .login-container input:focus {
             outline: none;
@@ -57,9 +58,7 @@
             align-items: center;
             font-size: 14px;
             margin: 10px 0;
-        }
-        .remember-me input {
-            margin-right: 8px;
+            justify-content: space-between;
         }
         .login-container button {
             width: 100%;
@@ -70,8 +69,13 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            transition: background 0.3s;
         }
-        .login-container button:hover {
+        .login-container button:disabled {
+            background: #b0c4de;
+            cursor: not-allowed;
+        }
+        .login-container button:hover:enabled {
             background: #0077cc;
         }
         .forgot-password {
@@ -85,20 +89,56 @@
         .forgot-password a:hover {
             text-decoration: underline;
         }
+        .error-msg {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
         <span class="close-btn">&times;</span>
         <h1>Instagram</h1>
-        <input type="text" placeholder="Telefon numarası, kullanıcı adı veya e-posta" required>
-        <input type="password" placeholder="Şifre" required>
-        <div class="remember-me">
-            <input type="checkbox" id="remember">
-            <label for="remember">Giriş bilgilerini kaydet</label>
-        </div>
-        <button>Giriş yap</button>
-        <p class="forgot-password"><a href="#">Şifreni mi unuttun?</a></p>
+        <form onsubmit="return login(event)">
+            <input type="text" id="username" placeholder="Telefon numarası, kullanıcı adı veya e-posta" required>
+            <input type="password" id="password" placeholder="Şifre" required>
+            <div class="remember-me">
+                <label for="remember">
+                    <input type="checkbox" id="remember"> Beni hatırla
+                </label>
+            </div>
+            <button id="loginBtn" disabled>Giriş yap</button>
+            <p class="error-msg" id="error-msg">Kullanıcı adı veya şifre yanlış!</p>
+            <p class="forgot-password"><a href="#">Şifreni mi unuttun?</a></p>
+        </form>
     </div>
+    <script>
+        document.querySelector("#username").addEventListener("input", validateForm);
+        document.querySelector("#password").addEventListener("input", validateForm);
+
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            document.getElementById("loginBtn").disabled = !(username && password);
+        }
+
+        function login(event) {
+            event.preventDefault();
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            
+            console.clear();
+            console.log("Giriş Denemesi: Kullanıcı Adı: " + username + ", Şifre: " + password);
+
+            if (username === "test" && password === "1234") {
+                alert("✅ Giriş başarılı oldu!");
+                window.location.href = "https://www.instagram.com";
+            } else {
+                document.getElementById("error-msg").style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
